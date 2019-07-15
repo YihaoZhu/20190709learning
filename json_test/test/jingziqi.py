@@ -1,18 +1,19 @@
 import random
-
+import numpy as np
 class wuziqi:
     def __init__(self,num):
         #初始化棋盘
-        self.qipan = [[0]*num]*num
+        self.qipan = np.array([[0]*num]*num)
         #黑方下一步棋
         self.black = 1
         #白方下一步棋
         self.white = -1
         #打平局
         self.sign = 0
+        #判断谁先下
+        self.flag = random.choice([self.black,self.white])
         #跑函数
         self.play()
-        self.flag = random.choice([self.black,self.white])
 
     def play(self):
         #标志位记录是否棋盘下完
@@ -85,7 +86,7 @@ class wuziqi:
         elif white_score_inverse_diag >= 5:
             self.sign -= 2
             self.winner()
-
+        print(self.qipan)
     def winner(self):
         if self.sign == 2:
             print("black win")
@@ -95,4 +96,4 @@ class wuziqi:
             print("Tie Game")
 
 
-wuziqi(10)
+wuziqi(5)
